@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.neppplus.apipractice_okhttp_20220303.databinding.ActivitySignUpBinding
 import com.neppplus.apipractice_okhttp_20220303.utils.ServerUtil
+import org.json.JSONObject
 
 class SignUpActivity : BaseActivity() {
 
@@ -24,7 +25,19 @@ class SignUpActivity : BaseActivity() {
             val inputPw = binding.edtPassword.text.toString()
             val inputNickname = binding.edtNickname.text.toString()
 
-            ServerUtil.
+            ServerUtil.putRequestSignUp(
+                inputEmail,
+                inputPw,
+                inputNickname,
+                object : ServerUtil.JsonResponseHandler{
+                    override fun onResponse(jsonObj: JSONObject) {
+
+
+
+                    }
+
+                }
+            )
 
         }
 
