@@ -3,6 +3,7 @@ package com.neppplus.apipractice_okhttp_20220303
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.neppplus.apipractice_okhttp_20220303.databinding.ActivitySignUpBinding
+import com.neppplus.apipractice_okhttp_20220303.utils.ServerUtil
 
 class SignUpActivity : BaseActivity() {
 
@@ -16,6 +17,16 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.btnSignUp.setOnClickListener {
+
+            val inputEmail = binding.edtEmail.text.toString()
+            val inputPw = binding.edtPassword.text.toString()
+            val inputNickname = binding.edtNickname.text.toString()
+
+            ServerUtil.
+
+        }
 
     }
 
