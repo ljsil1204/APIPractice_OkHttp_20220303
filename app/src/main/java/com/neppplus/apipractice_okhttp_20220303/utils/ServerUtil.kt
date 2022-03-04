@@ -1,5 +1,7 @@
 package com.neppplus.apipractice_okhttp_20220303.utils
 
+import okhttp3.FormBody
+
 class ServerUtil {
 
 //    서버에 Request를 날리는 역할
@@ -19,6 +21,13 @@ class ServerUtil {
 
 //            제작 1) 어느 주소 (url) 로 접근할지? => 서버주소 + 기능 주소
             val urlString = "${BASE_URL}/user"
+
+//            제작 2) 파라미터 담아주기 => 어떤 이름표 / 어느 공간에
+            val formData = FormBody.Builder()
+                .add("email", id)
+                .add("password", pw)
+                .build()
+
 
         }
 
