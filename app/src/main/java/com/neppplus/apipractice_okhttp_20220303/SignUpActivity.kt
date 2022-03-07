@@ -13,6 +13,9 @@ class SignUpActivity : BaseActivity() {
 
     lateinit var binding : ActivitySignUpBinding
 
+    var isDuplNicknameCheck = false
+    var isDuplEmailCheck = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
@@ -49,9 +52,11 @@ class SignUpActivity : BaseActivity() {
 
                             200 -> {
                                 binding.txtNicknameCheckResult.text = "사용해도 좋은 닉네임 입니다."
+                                isDuplNicknameCheck = true
                             }
                             else -> {
                                 binding.txtNicknameCheckResult.text = "다른 닉네임으로 사용해주세요."
+                                isDuplNicknameCheck = false
                             }
 
                         }
@@ -64,7 +69,6 @@ class SignUpActivity : BaseActivity() {
 
         }
 
-
         binding.edtEmail.addTextChangedListener {
 
 //            내용이 한글자라도 바뀌면, 무조건 재검사 요구 문장.
@@ -73,6 +77,7 @@ class SignUpActivity : BaseActivity() {
 
         }
 
+//        이메일 검사
         binding.btnEmailCheck.setOnClickListener {
 
 //            입력한 이메일 값 추출
@@ -94,9 +99,11 @@ class SignUpActivity : BaseActivity() {
                         when(code) {
                             200 -> {
                                 binding.txtEmailCheckResult.text = "사용해도 좋은 이메일입니다."
+                                isDuplEmailCheck = true
                             }
                             else -> {
                                 binding.txtEmailCheckResult.text = "다른 이메일로 다시 검사해주세요."
+                                isDuplEmailCheck = false
                             }
                         }
 
@@ -110,6 +117,7 @@ class SignUpActivity : BaseActivity() {
         }
 
 
+//        회원가입버튼 클릭 시
         binding.btnSignUp.setOnClickListener {
 
 
@@ -118,10 +126,17 @@ class SignUpActivity : BaseActivity() {
 
 //            hint) 진행 할 상황이 아니라면, return 처리하면 함수 종료.
 
-
             val inputEmail = binding.edtEmail.text.toString()
             val inputPw = binding.edtPassword.text.toString()
             val inputNickname = binding.edtNickname.text.toString()
+
+            if (!isDuplEmailCheck){
+                return@setOnClickListener Toast.makeText(mContext, "이메일 중복검사를 통과해야 합니다.", Toast.LENGTH_SHORT).show()
+            }
+
+            if (!isDuplNicknameCheck) {
+                return@setOnClickListener Toast.makeText(mContext, "닉네임 중복검사를 통과해야 합니다.", Toast.LENGTH_SHORT).show()
+            }
 
             ServerUtil.putRequestSignUp(
                 inputEmail,
@@ -141,7 +156,7 @@ class SignUpActivity : BaseActivity() {
 
                             val dataObj = jsonObj.getJSONObject("data")
                             val userObj = dataObj.getJSONObject("user")
-                            
+
                             val nickname = userObj.getString("nick_name")
 
                             runOnUiThread {
@@ -150,7 +165,7 @@ class SignUpActivity : BaseActivity() {
 
 //                            화면 종료 : 객체 소멸 (UI 동작 x)
                             finish()
-                            
+
                         }
                         else {
 
@@ -165,6 +180,7 @@ class SignUpActivity : BaseActivity() {
                     }
 
                 }
+
             )
 
         }
