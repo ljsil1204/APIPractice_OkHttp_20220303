@@ -22,6 +22,48 @@ class SignUpActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        binding.edtNickname.addTextChangedListener {
+
+            binding.txtNicknameCheckResult.text = "중복 확인을 해주세요."
+
+        }
+
+//        닉네임 검사 버튼 가능.
+        binding.btnNicknameCheck.setOnClickListener {
+
+//            입력한 닉네임 가져오기
+            val inputNickname = binding.edtNickname.text.toString()
+
+//            ServerUtil 중복체크 만들어놓은 함수 불러내기 -> NICK_NAME
+            ServerUtil.getRequestDuplicatedCheck("NICK_NAME", inputNickname, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
+
+                    val code = jsonObj.getInt("code")
+
+//                    문구변경 -> runOnUiThread안에서 처리
+                    runOnUiThread {
+
+
+                        when(code){
+
+                            200 -> {
+                                binding.txtNicknameCheckResult.text = "사용해도 좋은 닉네임 입니다."
+                            }
+                            else -> {
+                                binding.txtNicknameCheckResult.text = "다른 닉네임으로 사용해주세요."
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            })
+
+        }
+
+
         binding.edtEmail.addTextChangedListener {
 
 //            내용이 한글자라도 바뀌면, 무조건 재검사 요구 문장.
