@@ -60,6 +60,10 @@ class LoginActivity : BaseActivity() {
 
                         }
 
+//                        메인화면으로 진입
+
+
+
                     }
                     else{
 
