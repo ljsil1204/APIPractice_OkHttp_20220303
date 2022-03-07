@@ -4,6 +4,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/imgTopicBackground"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:src="@mipmap/ic_launcher"
@@ -14,12 +15,29 @@
         android:layout_height="match_parent"
         android:background="#55000000"/>
 
-    <TextView
+    <LinearLayout
+        android:gravity="center"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:text="토론 주제 자리"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:text="토론 주제 자리"/>
+
+        <TextView
+            android:id="@+id/txtReplyCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:text="n명이 참여중"/>
+
+    </LinearLayout>
 
 </FrameLayout>
