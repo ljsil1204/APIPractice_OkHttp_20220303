@@ -173,9 +173,35 @@ class ServerUtil {
 //        토큰은, ContextUtil 클래스에서 getToken 함수로 꺼내올 수 있다.
 //        토큰값 자체는 파라미터로 받아올 필요 없다. => ContextUtil을 불러다 사용하자.
 //        메모장에 접근 할 수 있게, Context 변수 하나를 미리 받아두자.
-        fun gerRequestMyInfo( context: Context, handler: JsonResponseHandler? ) {
+        fun getRequestMyInfo( context: Context, handler: JsonResponseHandler? ) {
 
+            val urlBuilder = "${BASE_URL}/user_info".toHttpUrlOrNull()!!.newBuilder()
+                .build() //쿼리파라미터를 담을 게 없다. 바로 build로 마무리.
 
+            val urlString = urlBuilder.toString()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+                .header("X-Http-Token", ContextUtil.getToken(context)) //ContextUtil을 통해, 저장된 토큰을 받아서 출력
+                .build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue( object : Callback{
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val jsonObj = JSONObject(response.body!!.string())
+                    Log.d("서버응답", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+
+                }
+
+            })
 
         }
 
