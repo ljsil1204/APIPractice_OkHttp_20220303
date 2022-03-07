@@ -101,6 +101,9 @@ class LoginActivity : BaseActivity() {
 
     override fun setValues() {
 
+//        이전에 설정한 자동로그인 여부를 미리 체크해두자.
+//        껏다 켜도 계속 반영 => 반 영구적으로 저장. => SharedPreferences에서 관리.
+
     }
 
 }
