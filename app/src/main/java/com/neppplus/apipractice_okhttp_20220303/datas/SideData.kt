@@ -1,10 +1,11 @@
 package com.neppplus.apipractice_okhttp_20220303.datas
 
 import org.json.JSONObject
+import java.io.Serializable
 
 // 토론의 선택 진영 (이름, id 값 등등)을 표현
 
-class SideData {
+class SideData : Serializable {
 
     var id = 0
     var title = ""
