@@ -31,6 +31,7 @@ class TopicAdapter(
 
         val txtTitle = row.findViewById<TextView>(R.id.txtTitle)
         val imgTopicBackground = row.findViewById<ImageView>(R.id.imgTopicBackground)
+        val txtReplyCount = row.findViewById<TextView>(R.id.txtReplyCount)
 
         txtTitle.text = data.title
 
@@ -39,6 +40,8 @@ class TopicAdapter(
 //        웹에 있는 이미지 > 이미지 뷰에 적용 > Glide 라이브러리
 
         Glide.with(mContext).load(data.imageURL).into(imgTopicBackground)
+
+        txtReplyCount.text = "${data.replyCount}명 참여중!"
 
 
 
