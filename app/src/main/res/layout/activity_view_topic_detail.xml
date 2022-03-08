@@ -29,6 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:gravity="center"
                 android:layout_gravity="center">
 
                 <TextView
@@ -38,6 +39,52 @@
                     android:text="토론주제의 제목"
                     android:textColor="@color/white"
                     android:textSize="20sp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtSide1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1번 진영"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:text="Vs."
+                        android:textColor="@color/white"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtSide2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2번 진영"
+                            android:textSize="17sp"
+                            android:textColor="@color/white"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
