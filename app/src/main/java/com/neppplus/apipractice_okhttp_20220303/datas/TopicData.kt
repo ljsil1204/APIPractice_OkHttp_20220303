@@ -18,12 +18,27 @@ class TopicData : Serializable {
 
 //            기본 내용의 TopicData 생성
             val topicData = TopicData()
+
+//            jsonObj에서 데이터 추출 > 멤버변수 대입
             topicData.id = jsonObj.getInt("id")
             topicData.title = jsonObj.getString("title")
             topicData.imageURL = jsonObj.getString("img_url")
             topicData.replyCount = jsonObj.getInt("reply_count")
 
-//            jsonObj에서 데이터 추출 > 멤버변수 대입
+//            sides라는 JONArraty가 들어있음.
+//              => topicData의 하위정보로, 선택진영 목록으로 저장.
+//              => JSONArray > ArrayList
+
+            val sidesArr = jsonObj.getJSONArray("sides")
+
+            for (i in 0 until sidesArr.length()){
+
+//                선택 진영 정보를 들고 있는 JSONObject 추출
+                val  sideObj = sidesArr.getJSONObject(i)
+
+//                sideObj도, SideData로 (선택 진영) 변환
+
+            }
 
 //            완성된 TopicData 리턴
             return topicData
