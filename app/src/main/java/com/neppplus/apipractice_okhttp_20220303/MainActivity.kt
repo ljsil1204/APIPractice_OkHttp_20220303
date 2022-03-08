@@ -36,7 +36,9 @@ class MainActivity : BaseActivity() {
 
             val clickedTopic = mTopicList[position]
 
-
+            val myIntent = Intent(mContext, ViewTopicDetailActivity::class.java)
+            myIntent.putExtra("topic", clickedTopic)
+            startActivity(myIntent)
 
         }
 
