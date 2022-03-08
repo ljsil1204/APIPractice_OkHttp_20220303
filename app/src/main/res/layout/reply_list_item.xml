@@ -5,12 +5,25 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="작성자 닉네임"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[1번 진영]"/>
+
+        <TextView
+            android:layout_marginStart="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="작성자 닉네임"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
