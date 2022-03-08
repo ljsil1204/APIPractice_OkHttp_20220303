@@ -269,7 +269,7 @@ class ServerUtil {
 
         }
 
-        fun postRequestVote ( context : Context, sideId : Int, handler : JsonResponseHandler? ) {
+        fun postRequestVote ( context : Context, sideId :Int, handler : JsonResponseHandler? ) {
 
             val urlString = "${BASE_URL}/topic_vote"
 
@@ -287,6 +287,7 @@ class ServerUtil {
 
             client.newCall(request).enqueue( object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
+
                 }
 
                 override fun onResponse(call: Call, response: Response) {
