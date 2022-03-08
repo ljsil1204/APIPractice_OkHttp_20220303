@@ -38,6 +38,7 @@ class TopicData : Serializable {
 
 //                sideObj도, SideData로 (선택 진영) 변환
 
+
             }
 
 //            완성된 TopicData 리턴
