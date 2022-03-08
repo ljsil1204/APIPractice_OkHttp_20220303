@@ -42,6 +42,14 @@ class ViewTopicDetailActivity : BaseActivity() {
         ServerUtil.getRequestTopicDetail(mContext, mTopicData.id, object : ServerUtil.JsonResponseHandler{
             override fun onResponse(jsonObj: JSONObject) {
 
+                val dataObj = jsonObj.getJSONObject("data")
+                val topicObj = dataObj.getJSONObject("topic")
+
+//                토론 정보 JSONObject (topicObj) => TopicData() 형태로 변환 (여러 화면에서 진행, 함수로 만들어두자.)
+                val topicData = TopicData.getTopicDataFromJson(topicObj)
+
+//                변환된 객체를, mTopicData로 다시 대입 => UI 반영도 다시 실행
+                mTopicData = topicData
 
 
             }
