@@ -7,6 +7,8 @@ class ReplyData(
     var content : String,
 ){
 
+    var writer = UserData() //모든 댓글에는 작성자가 있다. null 가능성이 없다.
+
 //    보조생성자 추가 연습 : 파라미터 x.
     constructor() : this(0, "내용없음")
     
@@ -15,6 +17,10 @@ class ReplyData(
         fun getReplyDataFromJson ( jsonObj : JSONObject ) : ReplyData {
 
             val replyData = ReplyData()
+
+            replyData.id = jsonObj.getInt("id")
+            replyData.content = jsonObj.getString("content")
+            replyData.writer = UserData.getUserDataFromServer( jsonObj.getJSONObject("user") )
 
             return replyData
 
