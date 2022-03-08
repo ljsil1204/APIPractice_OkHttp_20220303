@@ -30,11 +30,18 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     override fun setValues() {
 
-        binding.txtTitle.text = mTopicData.title
-        Glide.with(mContext).load(mTopicData.imageURL).into(binding.imgTopicBackground)
-
+        setTopicDataToUi()
         getTopicDetailFromServer()
 
+    }
+
+    fun setTopicDataToUi(){
+
+//        토론 주제에 대한 데이터들은, UI에 반영하는 함수
+//        화면 초기 진입 실행 + 서버에서 다시 받아왔을 때도 실행.
+
+        binding.txtTitle.text = mTopicData.title
+        Glide.with(mContext).load(mTopicData.imageURL).into(binding.imgTopicBackground)
     }
 
     fun getTopicDetailFromServer() {
@@ -51,6 +58,9 @@ class ViewTopicDetailActivity : BaseActivity() {
 //                변환된 객체를, mTopicData로 다시 대입 => UI 반영도 다시 실행
                 mTopicData = topicData
 
+                runOnUiThread {
+                    setTopicDataToUi()
+                }
 
             }
 
