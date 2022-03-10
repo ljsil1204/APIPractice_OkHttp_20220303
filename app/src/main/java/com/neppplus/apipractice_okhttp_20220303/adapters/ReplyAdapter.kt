@@ -57,7 +57,7 @@ class ReplyAdapter(
 
 //        sdf.format(Data 객체) => 지정해둔 양식의 String으로 가공.
 //        createdAt : Calendar / format의 파라미터 : Data => Calendar의 내용물인 time변수가 Data
-//        txtCreatedAt.text = sdf.format(data.createdAt.time)
+        txtCreatedAt.text = data.getFormattedCreatedAt()
 
 //        CreatedAt 변수의 일시 값으로 => parse 결과물 사용.
 
